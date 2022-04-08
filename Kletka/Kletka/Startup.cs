@@ -1,3 +1,7 @@
+using Kletka.Extensions;
+using Kletka.Infrastructure.Data;
+using Kletka.Infrastructure.Repository;
+using Kletka.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,10 +28,14 @@ namespace Kletka
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSQL(Configuration);
+            services.AddScoped<IRepository, EFRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStatusesService, StatusesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MVCDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -52,6 +60,12 @@ namespace Kletka
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //Ensures that the database for the context exists. If it exists, no action is taken.
+            //If it does not exist then the database and all its schema are created.
+            //If the database exists, then no effort is made to ensure it is compatible with the model for this context.
+            dbContext.Database.EnsureCreated();
         }
     }
 }
+

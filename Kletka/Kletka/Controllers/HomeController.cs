@@ -1,4 +1,5 @@
 ﻿using Kletka.Models;
+using Kletka.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,9 +14,14 @@ namespace Kletka.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUserService _userService;
+        private readonly IStatusesService _statusesService;
+
+        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService)
         {
             _logger = logger;
+            _userService = userService;
+            _statusesService = statusService;
         }
 
         public IActionResult Index()
@@ -23,8 +29,10 @@ namespace Kletka.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+            await _statusesService.AddUser("OK");
+
             return View();
         }
 
