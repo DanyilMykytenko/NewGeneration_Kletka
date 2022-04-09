@@ -7,7 +7,7 @@ namespace Kletka.Infrastructure.Data
 {
     public class Statuses : IEntity
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Status { get; set; }
 
         public virtual ICollection<Users> Users { get; set; } = new HashSet<Users>();

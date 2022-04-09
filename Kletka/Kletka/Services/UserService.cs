@@ -38,13 +38,13 @@ namespace Kletka.Services
                 Rate = rate
             });
 
-            return newUser.id;
+            return newUser.Id;
         }
 
         public async Task UpdateUser(int userId, string name)
         {
             var user = await _repository.GetAll<Users>()
-                .FirstOrDefaultAsync(u => u.id == userId);
+                .FirstOrDefaultAsync(u => u.Id == userId);
 
             user.FullName = name;
 

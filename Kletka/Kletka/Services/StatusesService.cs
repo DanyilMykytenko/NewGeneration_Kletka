@@ -26,7 +26,7 @@ namespace Kletka.Services
                 Status = status
             });
 
-            return newUser.id;
+            return newUser.Id;
         }
 
         public Task UpdateUser(int statusId, string name)

@@ -12,9 +12,9 @@ namespace Kletka.Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Users> builder)
         {
-            builder.HasKey(u => u.id);
+            builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.id)
+            builder.Property(u => u.Id)
                 .IsRequired()
                 .ValueGeneratedOnAdd();
 

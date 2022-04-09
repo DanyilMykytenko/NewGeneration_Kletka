@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Kletka.Infrastructure.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,23 +17,27 @@ namespace Kletka.Controllers
 
         private readonly IUserService _userService;
         private readonly IStatusesService _statusesService;
+        private readonly ILoginService _loginService;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService, ILoginService loginService)
         {
             _logger = logger;
             _userService = userService;
             _statusesService = statusService;
+            _loginService = loginService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View("Login");
         }
-
-        public async Task<IActionResult> Privacy()
+        public async Task<IActionResult> LoginForm(Users users)
         {
-            await _statusesService.AddUser("OK");
-
+            var x = await _loginService.CheckLogin(users.Login, users.Password); 
+            if (x == 0)
+            {
+                return NotFound();
+            }
             return View();
         }
 

@@ -31,6 +31,7 @@ namespace Kletka
             services.AddSQL(Configuration);
             services.AddScoped<IRepository, EFRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ILoginService, LoginServicecs>();
             services.AddScoped<IStatusesService, StatusesService>();
         }
 

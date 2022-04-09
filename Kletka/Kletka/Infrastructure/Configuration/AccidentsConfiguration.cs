@@ -12,7 +12,7 @@ namespace Kletka.Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Accidents> builder)
         {
-            builder.Property(u => u.id)
+            builder.Property(u => u.Id)
                 .IsRequired()
                 .ValueGeneratedOnAdd();
 
