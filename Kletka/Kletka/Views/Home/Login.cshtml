@@ -1,0 +1,59 @@
+﻿@model Kletka.Infrastructure.Data.Users
+
+
+@using (Html.BeginForm("LoginForm", "Home", FormMethod.Post))
+{
+ <div class ='body'>
+     <div class='loader-container'>
+<section>
+  <div class="block block1"></div>
+  <div class="block block2"></div>
+  <div class="block block3"></div>
+</section>
+<section>
+  <div class="block block1"></div>
+  <div class="block block2"></div>
+  <div class="block block3"></div>
+</section>
+</div>
+</div>
+
+   <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+         <div class="login100-pic js-tilt  pic-center" style='width:425px !important;' data-tilt="">
+            <img src="~/img/img-01.png" alt="IMG" style='width: 100% !important;'>
+         </div>
+         <form class="login100-form validate-form">
+            <span class="login100-form-title">
+            Member Login
+            </span>
+            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+               @Html.TextBoxFor(model => model.Login, new { @class = "input100", type="text", name="login", placeholder="Login" })
+               <span class="focus-input100"></span>
+               <span class="symbol-input100">
+               <i class="fa fa-user" aria-hidden="true"></i>
+               </span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+               @Html.TextBoxFor(model => model.Password, new { @class = "input100", type="password", name="pass",placeholder="Password", id="myInput" })
+               <span class="focus-input100"></span>
+               <span class="symbol-input100">
+               <i class="fa fa-lock" aria-hidden="true"></i>
+               </span>
+            </div>
+            <div class='toggler'>
+               <input class='toggler-btn' type="checkbox" onclick="myFunction()">
+               <h3 class='toggler-text'>Show Password</h3>
+            </div>
+            <div class="container-login100-form-btn">
+               <button class="login100-form-btn">
+               Login
+               </button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+}
+

@@ -10,6 +10,9 @@ namespace Kletka.Infrastructure.Repository
     {
         public Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity : class, IEntity;
         public Task<TEntity> UpdateAsync<TEntity>(TEntity entity) where TEntity : class, IEntity;
+
+        //public Task<int> CheckExisting<TEntity>(string login,string password) where TEntity : class,IEntity;
+        public Task<Users> Login(string login, string password);
         public IQueryable<TEntity> GetAll<TEntity>() where TEntity : class, IEntity;
     }
 }

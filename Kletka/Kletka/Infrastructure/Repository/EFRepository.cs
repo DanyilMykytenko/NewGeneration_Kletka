@@ -1,4 +1,5 @@
 ﻿using Kletka.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,5 +41,26 @@ namespace Kletka.Infrastructure.Repository
             return _dbContext.Set<TEntity>()
                 .Select(i => i);
         }
+        public async Task<Users> Login(string username, string password)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Login == username);
+            var pass = await _dbContext.Users.FirstOrDefaultAsync(x => x.Password == password);
+
+            if (user == null)
+                return null;
+
+            if (pass == null)
+                return null;
+
+            return user;
+        }
+        /*
+public async Task<int> CheckExisting<TEntity>(string login, string password) where TEntity : class, IEntity
+{
+        var result = _dbContext.Users.FirstOrDefault(x => x.Login == login && x.Password == password);
+        return result.Id;
+}
+*/
+
     }
 }

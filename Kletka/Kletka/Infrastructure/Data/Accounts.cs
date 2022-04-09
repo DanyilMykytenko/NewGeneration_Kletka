@@ -7,7 +7,7 @@ namespace Kletka.Infrastructure.Data
 {
     public class Accounts : IEntity
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public int OwnerId { get; set; }
         public int AccountNumber { get; set; }
         public double? Balance{ get; set; }

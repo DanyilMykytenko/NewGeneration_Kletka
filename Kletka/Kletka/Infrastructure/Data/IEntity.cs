@@ -7,6 +7,6 @@ namespace Kletka.Infrastructure.Data
 {
     public interface IEntity
     {
-        public int id { get; set; }
+        public int Id { get; set; }
     }
 }

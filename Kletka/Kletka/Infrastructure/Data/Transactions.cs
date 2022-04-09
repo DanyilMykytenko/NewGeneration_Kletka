@@ -7,7 +7,7 @@ namespace Kletka.Infrastructure.Data
 {
     public class Transactions : IEntity
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public DateTime TransactionDatetime { get; set; }
         public int SendersAccountId { get; set; }
         public int ReceiversAccountId { get; set; }

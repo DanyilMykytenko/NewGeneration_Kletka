@@ -7,7 +7,7 @@ namespace Kletka.Infrastructure.Data
 {
     public class Accidents : IEntity
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string Accident { get; set; }
         public DateTime AccidentTime { get; set; }
