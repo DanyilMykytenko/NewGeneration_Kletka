@@ -211,3 +211,34 @@ section {
 .gradient-anim {
     background: linear-gradient(315deg, #7f5a83 0%, #0d324d 74%);
 }
+.slide-out-fwd-right {
+    -webkit-animation: slide-out-fwd-right 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: slide-out-fwd-right 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+@-webkit-keyframes slide-out-fwd-right {
+    0% {
+        -webkit-transform: translateZ(0) translateX(0);
+        transform: translateZ(0) translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateZ(600px) translateX(400px);
+        transform: translateZ(600px) translateX(400px);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-out-fwd-right {
+    0% {
+        -webkit-transform: translateZ(0) translateX(0);
+        transform: translateZ(0) translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: translateZ(600px) translateX(400px);
+        transform: translateZ(600px) translateX(400px);
+        opacity: 0;
+    }
+}
