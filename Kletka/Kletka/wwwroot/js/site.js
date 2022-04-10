@@ -24,7 +24,9 @@ function myFunction() {
 }
 function showGif() {
     var x = document.querySelector(".gif");
+    var audio = document.getElementById("audio");
     x.classList.add('visible');
+    audio.play();
 }
 function showLoader() {
     var x = document.querySelector(".body");
@@ -39,9 +41,14 @@ function hideLoader() {
     var x = document.querySelector(".body");
     var y = document.querySelector(".limiter");
     var b = document.querySelector(".page-main");
-    b.classList.remove('loading');
-    y.classList.remove('hidden');
-    x.classList.add('hidden');
+    var z = document.querySelector(".loader-container");
+    z.classList.add("slide-out-fwd-right");
+    setTimeout(() => {
+        b.classList.remove('loading');
+        y.classList.remove('hidden');
+        x.classList.add('hidden');
+    },900)
+    
 }
 function changeBackground() {
     var b = document.querySelector(".page-main");
@@ -55,6 +62,5 @@ window.addEventListener('load', function () {
             changeBackground();
         }, 700)
     }, 3500)
-    
     
 });
