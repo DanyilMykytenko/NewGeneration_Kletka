@@ -42,13 +42,22 @@ function hideLoader() {
     var y = document.querySelector(".limiter");
     var b = document.querySelector(".page-main");
     var z = document.querySelector(".loader-container");
+    var a = document.querySelector(".limiter-body");
     z.classList.add("slide-out-fwd-right");
     setTimeout(() => {
         b.classList.remove('loading');
         y.classList.remove('hidden');
         x.classList.add('hidden');
+        a.classList.add('visible');
     },900)
     
+}
+function onLogin() {
+    window.onhashchange = function () {
+        x = document.querySelector(".toggler-btn")
+        x.checked = false;
+        showLoader();
+    }
 }
 function changeBackground() {
     var b = document.querySelector(".page-main");

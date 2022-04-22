@@ -48,6 +48,7 @@ namespace Kletka.Infrastructure.Repository
 
             if (user == null)
                 return null;
+
             if (pass == null)
                 return null;
 
