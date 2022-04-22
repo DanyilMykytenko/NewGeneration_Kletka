@@ -17,7 +17,7 @@ namespace Kletka.Infrastructure.Configuration
                 .IsRequired()
                 .ValueGeneratedOnAdd();
 
-            builder.Property(u => u.OwnerId).IsRequired();
+            builder.Property(u => u.OwnerId).IsRequired().ValueGeneratedOnAdd();
             builder.Property(u => u.AccountNumber).IsRequired();
             builder.Property(u => u.Type).IsRequired();
             builder.Property(u => u.APIKey).IsRequired();

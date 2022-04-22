@@ -44,15 +44,13 @@ namespace Kletka.Infrastructure.Repository
         public async Task<Users> Login(string username, string password)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Login == username);
-            //var pass = await _dbContext.Users.FirstOrDefaultAsync(x => x.Password == password);
+            var pass = await _dbContext.Users.FirstOrDefaultAsync(x => x.Password == password);
 
             if (user == null)
                 return null;
+            if (pass == null)
+                return null;
 
-            if (user.Password == password)
-            {
-                return user;
-            }
             return user;
         }
         /*

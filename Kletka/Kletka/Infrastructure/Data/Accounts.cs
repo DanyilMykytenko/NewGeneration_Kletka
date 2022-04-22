@@ -9,7 +9,7 @@ namespace Kletka.Infrastructure.Data
     {
         public int Id { get; set; }
         public int OwnerId { get; set; }
-        public int AccountNumber { get; set; }
+        public long AccountNumber { get; set; }
         public double? Balance{ get; set; }
         public string Type { get; set; }
         public string APIKey{ get; set; }
