@@ -45,9 +45,9 @@ namespace Kletka.Services
                 var check = await _repository.GetAll<Accounts>()
                     .FirstOrDefaultAsync(u => u.AccountNumber == accountNumber);
                 if (check == null)
-                    continue;
-                else
                     break;
+                else
+                    continue;
             }
             return accountNumber;
         }
@@ -69,9 +69,9 @@ namespace Kletka.Services
                 var check = await _repository.GetAll<Accounts>()
                     .FirstOrDefaultAsync(u => u.AccountNumber == CVVCode);
                 if (check == null)
-                    continue;
-                else
                     break;
+                else
+                    continue;
             }
             return CVVCode;
         }
