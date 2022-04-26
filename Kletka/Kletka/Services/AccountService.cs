@@ -25,6 +25,7 @@ namespace Kletka.Services
 
             var newUser = await _repository.AddAsync(new Accounts
             {
+                OwnerId = ownerId,
                 AccountNumber = await generateAccountNumber(),
                 Balance = 0,
                 Type = type,
