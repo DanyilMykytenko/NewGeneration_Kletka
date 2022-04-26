@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kletka.Services
 {
-    interface IPersonalCabinet
+    interface ICabinetService
     {
         public Task uploadInformation(Accounts account);
     }
