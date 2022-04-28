@@ -1,4 +1,5 @@
 ﻿using Kletka.Infrastructure.Data;
+using Kletka.Infrastructure.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,15 @@ namespace Kletka.Services
 {
     public class CabinetService : ICabinetService
     {
-        public async Task uploadInformation(Accounts account)
+        private readonly IRepository _repository;
+        public CabinetService(IRepository repository)
         {
-            if(account == null)
-            {
-                throw new ArgumentNullException();
-            }
+            _repository = repository;
+        }
+        public async Task<Accounts> uploadAccountInformation(int id)
+        {
+            var Account = await _repository.GetAccountsByUserAsync(id);
+            return Account;
         }
     }
 }

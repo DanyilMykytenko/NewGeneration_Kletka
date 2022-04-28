@@ -18,13 +18,15 @@ namespace Kletka.Controllers
         private readonly IUserService _userService;
         private readonly IStatusesService _statusesService;
         private readonly ILoginService _loginService;
+        private readonly ICabinetService _cabinetService;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService, ILoginService loginService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService, ILoginService loginService, ICabinetService cabinetService)
         {
             _logger = logger;
             _userService = userService;
             _statusesService = statusService;
             _loginService = loginService;
+            _cabinetService = cabinetService;
         }
 
         public IActionResult Index()
@@ -33,14 +35,15 @@ namespace Kletka.Controllers
         }
         public async Task<IActionResult> LoginForm(Users users)
         {
-            var x = await _loginService.CheckLogin(users.Login, users.Password); 
-            if (x == 0)
+
+            var user = await _loginService.CheckLogin(users.Login, users.Password);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View();
+            var account = await _cabinetService.uploadAccountInformation(user.Id);
+            return View(user);
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

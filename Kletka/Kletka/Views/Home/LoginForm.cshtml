@@ -1,4 +1,5 @@
-﻿
+﻿@model Kletka.Infrastructure.Data.Users
+
  <div class ='body'>
      <div class='loader-container'>
 <section>
@@ -102,7 +103,7 @@
                     <div class="col-xl-12">
                         <div class="page_title-content">
                             <p>Welcome Back,
-                                <span> Maria Pascle</span>
+                                <span> @Html.Raw(@Model.FullName) </span>
                             </p>
                         </div>
                     </div>
@@ -120,8 +121,8 @@
                                     <img class="me-3 rounded-circle me-0 me-sm-3" src="~/img/profile/2.png" width="60" height="60" alt="">
                                     <div class="flex-grow-1">
                                         <span>Hello</span>
-                                        <h4 class="mb-2">Maria Pascle</h4>
-                                        <p class="mb-1"> <span><i class="fa fa-phone me-2 text-primary"></i></span> +1 235 5547</p>
+                                        <h4 class="mb-2">@Html.Raw(@Model.FullName)</h4>
+                                        <p class="mb-1"> <span><i class="fa fa-phone me-2 text-primary"></i></span> @Html.Raw(@Model.Contacts)</p>
                                         <p class="mb-1"> <span><i class="fa fa-envelope me-2 text-primary"></i></span>
                                             <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48c8188888ba4819c8589948881ca878b89">[email&#160;protected]</a>
                                         </p>

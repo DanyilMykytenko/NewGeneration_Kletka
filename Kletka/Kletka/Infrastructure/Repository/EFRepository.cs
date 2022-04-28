@@ -41,7 +41,7 @@ namespace Kletka.Infrastructure.Repository
             return _dbContext.Set<TEntity>()
                 .Select(i => i);
         }
-        public async Task<Users> Login(string username, string password)
+        public async Task<Users> GetUsersAsync(string username, string password)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Login == username);
             var pass = await _dbContext.Users.FirstOrDefaultAsync(x => x.Password == password);
@@ -54,13 +54,12 @@ namespace Kletka.Infrastructure.Repository
 
             return user;
         }
-        /*
-public async Task<int> CheckExisting<TEntity>(string login, string password) where TEntity : class, IEntity
-{
-        var result = _dbContext.Users.FirstOrDefault(x => x.Login == login && x.Password == password);
-        return result.Id;
-}
-*/
-
+        public async Task<Accounts> GetAccountsByUserAsync(int id)
+        {
+            var account = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.Id == id);
+            if (account == null)
+                   return null;
+            return account;
+        }
     }
 }

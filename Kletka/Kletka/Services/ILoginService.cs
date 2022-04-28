@@ -6,7 +6,7 @@ namespace Kletka.Services
     public interface ILoginService
     {
 
-        public Task<int> CheckLogin(string login, string password);
+        public Task<Users> CheckLogin(string login, string password);
 
     }
 }

@@ -14,14 +14,14 @@ namespace Kletka.Services
         {
             _repository = repository;
         }
-        public async Task<int> CheckLogin(string login,string password)
+        public async Task<Users> CheckLogin(string login,string password)
         {
-            var tasks = await _repository.Login(login,password);
-            if (tasks == null)
+            var user = await _repository.GetUsersAsync(login,password);
+            if (user == null)
             {
-                return 0;
+                return null;
             }
-            return tasks.Id;
+            return user;
         }
     }
 }
