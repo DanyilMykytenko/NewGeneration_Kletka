@@ -29,7 +29,7 @@ namespace Kletka.Services
                 AccountNumber = await generateAccountNumber(),
                 Balance = 0,
                 Type = type,
-                APIKey = await generateAPIKey(),
+                APIKey = generateAPIKey(),
                 CVVCode = await generateCVVCode(),
                 AccountStatus = "Just new."
             });
@@ -42,7 +42,7 @@ namespace Kletka.Services
             Random rnd = new Random();
             while (true)
             {
-                accountNumber = 555532322323 + rnd.Next(4000, 5000);
+                accountNumber =  + rnd.Next(1000, 9999);
                 var check = await _repository.GetAll<Accounts>()
                     .FirstOrDefaultAsync(u => u.AccountNumber == accountNumber);
                 if (check == null)
@@ -52,7 +52,7 @@ namespace Kletka.Services
             }
             return accountNumber;
         }
-        private async Task<string> generateAPIKey()
+        private string generateAPIKey()
         {
             var key = new byte[32];
             using (var generator = RandomNumberGenerator.Create())
