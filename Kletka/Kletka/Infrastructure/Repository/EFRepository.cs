@@ -56,7 +56,7 @@ namespace Kletka.Infrastructure.Repository
         }
         public async Task<Accounts> GetAccountsByUserAsync(int id)
         {
-            var account = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.Id == id);
+            var account = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.OwnerId == id);
             if (account == null)
                    return null;
             return account;

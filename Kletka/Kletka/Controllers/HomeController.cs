@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Kletka.Infrastructure.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Dynamic;
 
 namespace Kletka.Controllers
 {
@@ -42,7 +43,14 @@ namespace Kletka.Controllers
                 return NotFound();
             }
             var account = await _cabinetService.uploadAccountInformation(user.Id);
-            return View(user);
+            if (account == null)
+            {
+                return NotFound();
+            }
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Users = user;
+            mymodel.Accounts = account;
+            return View(mymodel);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
