@@ -14,6 +14,23 @@ namespace Kletka.Services
         {
             _repository = repository;
         }
+
+        public async Task<string> checkLogoForUpload(Users user)
+        {
+            if(user == null)
+            {
+                throw new ArgumentNullException("user"); 
+            }
+            if (user.UserType == "Admin")
+            {
+                return "voenkom.jpg";
+            }
+            else
+            {
+                return "chmonya.jpg";
+            }
+        }
+
         public async Task<Accounts> uploadAccountInformation(int id)
         {
             var Account = await _repository.GetAccountsByUserAsync(id);

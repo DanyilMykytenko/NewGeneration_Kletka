@@ -7,6 +7,8 @@
   <ItemGroup>
     <Content Remove="Views\Login.cshtml" />
     <Content Remove="Views\LoginForm.cshtml" />
+    <Content Remove="wwwroot\img\chmonya.jpg" />
+    <Content Remove="wwwroot\img\voenkom.jpg" />
   </ItemGroup>
 
   <ItemGroup>

@@ -48,9 +48,11 @@ namespace Kletka.Controllers
             {
                 return NotFound();
             }
+            string UserLogo = await _cabinetService.checkLogoForUpload(user);
             dynamic mymodel = new ExpandoObject();
             mymodel.Users = user;
             mymodel.Accounts = account;
+            mymodel.Logo = UserLogo;
             return View(mymodel);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
