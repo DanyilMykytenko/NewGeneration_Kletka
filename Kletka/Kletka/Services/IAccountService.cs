@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Kletka.Services
 {
-    interface IAccountService
+    public interface IAccountService
     {
         public Task<int> AddAccount(int ownerId, string type);
     }
