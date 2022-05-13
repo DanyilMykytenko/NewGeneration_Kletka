@@ -21,8 +21,9 @@ namespace Kletka.Controllers
         private readonly ILoginService _loginService;
         private readonly ICabinetService _cabinetService;
         private readonly IAccountService _accountService;
+        private readonly ITransactionsService _transactionService;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService, ILoginService loginService, ICabinetService cabinetService, IAccountService accountService)
+        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService, ILoginService loginService, ICabinetService cabinetService, IAccountService accountService, ITransactionsService transactionsService)
         {
             _logger = logger;
             _userService = userService;
@@ -30,6 +31,7 @@ namespace Kletka.Controllers
             _loginService = loginService;
             _cabinetService = cabinetService;
             _accountService = accountService;
+            _transactionService = transactionsService;
         }
 
         public IActionResult Index()
@@ -48,11 +50,15 @@ namespace Kletka.Controllers
             {
                 return NotFound();
             }
+            //var transaction = await _transactionService.checkingForTransaction(account, account, 0);
+            //var transaction = _transactionService;
             string UserLogo = await _cabinetService.checkLogoForUpload(user);
             dynamic mymodel = new ExpandoObject();
             mymodel.Users = user;
             mymodel.Accounts = account;
+            //mymodel.TransactionsService = transaction;
             mymodel.Logo = UserLogo;
+
             return View(mymodel);
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

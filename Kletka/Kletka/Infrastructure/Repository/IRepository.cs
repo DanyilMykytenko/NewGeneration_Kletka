@@ -13,5 +13,6 @@ namespace Kletka.Infrastructure.Repository
         public Task<Users> GetUsersAsync(string login, string password);
         public Task<Accounts> GetAccountsByUserAsync(int id);
         public IQueryable<TEntity> GetAll<TEntity>() where TEntity : class, IEntity;
+        public Task<bool> makeTransaction(Accounts sendersAccount, Accounts receiversAccount, int money);
     }
 }

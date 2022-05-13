@@ -35,6 +35,7 @@ namespace Kletka
             services.AddScoped<IStatusesService, StatusesService>();
             services.AddScoped<ICabinetService, CabinetService>(); 
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITransactionsService, TransactionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -61,5 +61,23 @@ namespace Kletka.Infrastructure.Repository
                    return null;
             return account;
         }
+
+        public async Task<bool> makeTransaction(Accounts sendersAccount, Accounts receiversAccount, int money)
+        {
+            if(sendersAccount == null || receiversAccount == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if(sendersAccount.Balance > money)
+            {
+                sendersAccount.Balance -= money;
+                receiversAccount.Balance += money;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
