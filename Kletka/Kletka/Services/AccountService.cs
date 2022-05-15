@@ -36,9 +36,9 @@ namespace Kletka.Services
 
             return newUser.Id;
         }
-        private async Task<long> generateAccountNumber()
+        private async Task<int> generateAccountNumber()
         {
-            long accountNumber = 0;
+            int accountNumber = 0;
             Random rnd = new Random();
             while (true)
             {

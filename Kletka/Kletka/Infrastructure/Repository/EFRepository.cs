@@ -61,7 +61,7 @@ namespace Kletka.Infrastructure.Repository
                    return null;
             return account;
         }
-        public async Task<Accounts> GetAccountByAccountNumberAsync(long accountNumber)
+        public async Task<Accounts> GetAccountByAccountNumberAsync(int accountNumber)
         {
             var account = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.AccountNumber == accountNumber);
             if (account == null)
@@ -69,9 +69,10 @@ namespace Kletka.Infrastructure.Repository
             return account;
         }
 
-        public async Task<bool> makeTransaction(Accounts sendersAccount, long accountNumber, int money)
+        public async Task<bool> makeTransaction(Accounts sendersAccount, int accountNumber, int money)
         {
-            if(sendersAccount == null || accountNumber == null)
+            if (accountNumber == -1) return false;
+            if(sendersAccount == null || accountNumber == 0)
             {
                 throw new ArgumentNullException();
             }

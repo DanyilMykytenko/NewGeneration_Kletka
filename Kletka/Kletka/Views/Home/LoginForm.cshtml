@@ -1,430 +1,460 @@
 ﻿@using Kletka;
 @model dynamic
-
- <div class ='body'>
-     <div class='loader-container'>
-<section>
-  <div class="block block1"></div>
-  <div class="block block2"></div>
-  <div class="block block3"></div>
-</section>
-<section>
-  <div class="block block1"></div>
-  <div class="block block2"></div>
-  <div class="block block3"></div>
-</section>
+<div class='body'>
+	<div class='loader-container'>
+		<section>
+			<div class="block block1"></div>
+			<div class="block block2"></div>
+			<div class="block block3"></div>
+		</section>
+		<section>
+			<div class="block block1"></div>
+			<div class="block block2"></div>
+			<div class="block block3"></div>
+		</section>
+	</div>
 </div>
+
+
+<div class="limiter">
+	<div class="limiter-body">
+
+		<div class="header loading-imp">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-12">
+						<nav class="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
+							<a class="navbar-brand" href="index.html">
+								<img src="~/img/w_logo.png" alt="">
+								<span>Kletka Bank Student Test Project</span>
+							</a>
+
+
+							<div class="dashboard_log my-2">
+								<div class="d-flex align-items-center">
+									<div class="account_money">
+										<ul>
+											<li class="crypto">
+												<span>0.0025</span>
+												<i class="cc BTC-alt"></i>
+											</li>
+											<li class="usd">
+												<span>19.93 USD</span>
+											</li>
+										</ul>
+									</div>
+									<div class="profile_log dropdown">
+										<div class="user" data-toggle="dropdown">
+											<span class="thumb"><i class="la la-user"></i></span>
+											<span class="name">@Html.Raw(@Model.Users.FullName)</span>
+											<span class="arrow"><i class="la la-angle-down"></i></span>
+										</div>
+										<div class="dropdown-menu dropdown-menu-right">
+											<a href="accounts.html" class="dropdown-item">
+												<i class="fa fa-user"></i> Account
+											</a>
+											<a href="history.html" class="dropdown-item">
+												<i class="fa fa-book"></i> History
+											</a>
+											<a href="settings.html" class="dropdown-item">
+												<i class="fa fa-cog"></i> Setting
+											</a>
+											<a href="lock.html" class="dropdown-item">
+												<i class="fa fa-lock"></i> Lock
+											</a>
+											<a href="signin.html" class="dropdown-item logout">
+												<i class="fa fa-sign-out"></i> Logout
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="sidebar loading-imp">
+			<div class="menu">
+				<ul>
+					<li>
+						<a href="index.html" data-toggle="tooltip" data-placement="right" title="Home">
+							<span><i class="fa fa-igloo"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="buy-sell.html" data-toggle="tooltip" data-placement="right" title="Exchange">
+							<span><i class="fa fa-exchange-alt"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="accounts.html" data-toggle="tooltip" data-placement="right" title="Account">
+							<span><i class="fa fa-user"></i></span>
+						</a>
+					</li>
+					<li>
+						<a href="settings.html" data-toggle="tooltip" data-placement="right" title="Setting">
+							<span><i class="fa fa-tools"></i></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="page_title">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="page_title-content">
+							<p>
+								Welcome Back,
+								<span>   @Html.Raw(@Model.Users.FullName) </span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-body">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-6">
+						<div class="card profile_card" style='height: 389px;'>
+							<div class="card-body">
+								<div class="d-flex">
+									<img class="me-3 rounded-circle me-0 me-sm-3" src="~/img/profile/@Model.Logo" width="60" height="60" alt="">
+									<div class="flex-grow-1">
+										<span>Hello</span>
+										<h4 class="mb-2">@Html.Raw(@Model.Users.FullName)</h4>
+										<p class="mb-1"> <span><i class="fa fa-phone me-2 text-primary"></i></span> @Html.Raw(@Model.Users.Contacts)</p>
+										<p class="mb-1">
+											<span><i class="fa fa-envelope me-2 text-primary"></i></span>
+											<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48c8188888ba4819c8589948881ca878b89">[email&#160;protected]</a>
+										</p>
+									</div>
+								</div>
+
+								<ul class="card-profile__info">
+									<li>
+										<h5 class="me-4">Address</h5>
+										<span class="text-muted">@Html.Raw(@Model.Users.Id)</span>
+									</li>
+									<li class="mb-1">
+										<h5 class="me-4">Total Log</h5>
+										<span>103 Time (Today 5 Times)</span>
+									</li>
+									<li>
+										<h5 class="text-danger me-4">Last Log</h5>
+										<span class="text-danger">
+											3 February,
+											<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+																																	  var CurrentYear = new Date().getFullYear()
+																																	  document.write(CurrentYear)
+											</script>, 10:00 PM
+										</span>
+									</li>
+								</ul>
+								<div class="social-icons">
+									<a class="facebook text-center" href="javascript:void(0)">
+										<span>
+											<i class="fa fa-facebook"></i>
+										</span>
+									</a>
+									<a class="twitter text-center" href="javascript:void(0)">
+										<span>
+											<i class="fa fa-twitter"></i>
+										</span>
+									</a>
+									<a class="youtube text-center" href="javascript:void(0)">
+										<span>
+											<i class="fa fa-youtube"></i>
+										</span>
+									</a>
+									<a class="googlePlus text-center" href="javascript:void(0)">
+										<span>
+											<i class="fa fa-google"></i>
+										</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-4 col-md-6">
+						<div class="card acc_balance">
+							<div class="card-header">
+								<h4 class="card-title">Wallet</h4>
+							</div>
+							<div class="card-body">
+								<span>Available BTC</span>
+								<h3>@Html.Raw(@Model.Accounts.AccountNumber)</h3>
+
+								<div class="d-flex justify-content-between my-4">
+									<div>
+										<p class="mb-1">Buy this month</p>
+										<h4>3.0215485 BTC</h4>
+									</div>
+									<div>
+										<p class="mb-1">Sell this month</p>
+										<h4>3.0215485 BTC</h4>
+									</div>
+								</div>
+
+								<div class="btn-group mb-3">
+									<button class="btn btn-primary">Sell</button>
+									<button class="btn btn-success">Buy</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-lg-4">
+						<div class="card" style='height: 389px;'>
+							<div class="card-header">
+								<h4 class="card-title">Withdraw</h4>
+							</div>
+							<div class="card-body">
+								
+									<form class='send-money-form'>
+										<div class="mb-3">
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<label class="input-group-text"><i class="fa fa-money-bill"></i></label>
+												</div>
+												<input class='form-control money-amount' placeholder="5000 USD" name="money-amount" value="1" type="text" />
+												
+
+											</div>
+										</div>
+										<div class="mb-3">
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<label class="input-group-text"><i class="fa fa-bank"></i></label>
+												</div>
+												<select class="form-control parent-control" onclick='sendMoneyRequest()'>
+													<option class='select-item'>7657</option>
+													<option class='select-item'>6104</option>
+													<option class='select-item'>3722</option>
+													<option class='select-item'>9559</option>
+													<option class='select-item'>8896</option>
+												</select>
+												<input style='visibility: hidden; display: non' class='input-card-number' type="hidden" name="card-number" value="1" />
+											</div>
+										</div>
+
+
+										<div  class="btn btn-primary btn-block"  onclick='moneyPostRequest()'>Withdraw Now</div>
+										
+									</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12">
+						<div class="card">
+							<div class="card-header border-0">
+								<h4 class="card-title">All Activities</h4>
+							</div>
+							<div class="card-body pt-0">
+								<div class="transaction-table">
+									<div class="table-responsive">
+										<table class="table mb-0 table-responsive-sm">
+											<tbody>
+												<tr>
+													<td>
+														<span class="sold-thumb"><i class="la la-arrow-down"></i></span>
+													</td>
+
+													<td>
+														<span class="badge badge-danger">Sold</span>
+													</td>
+													<td>
+														<i class="cc BTC"></i> BTC
+													</td>
+													<td>
+														Using - Bank *******5264
+													</td>
+													<td class="text-danger">-0.000242 BTC</td>
+													<td>-0.125 USD</td>
+												</tr>
+												<tr>
+													<td>
+														<span class="buy-thumb"><i class="la la-arrow-up"></i></span>
+													</td>
+													<td>
+														<span class="badge badge-success">Buy</span>
+													</td>
+													<td>
+														<i class="cc LTC"></i> LTC
+													</td>
+													<td>
+														Using - Card *******8475
+													</td>
+													<td class="text-success">-0.000242 BTC</td>
+													<td>-0.125 USD</td>
+												</tr>
+												<tr>
+													<td>
+														<span class="sold-thumb"><i class="la la-arrow-down"></i></span>
+													</td>
+													<td>
+														<span class="badge badge-danger">Sold</span>
+													</td>
+													<td>
+														<i class="cc XRP"></i> XRP
+													</td>
+													<td>
+														Using - Card *******8475
+													</td>
+													<td class="text-danger">-0.000242 BTC</td>
+													<td>-0.125 USD</td>
+												</tr>
+												<tr>
+													<td>
+														<span class="buy-thumb"><i class="la la-arrow-up"></i></span>
+													</td>
+													<td>
+														<span class="badge badge-success">Buy</span>
+													</td>
+													<td>
+														<i class="cc DASH"></i> DASH
+													</td>
+													<td>
+														Using - Card *******2321
+													</td>
+													<td class="text-success">-0.000242 BTC</td>
+													<td>-0.125 USD</td>
+												</tr>
+												<tr>
+													<td>
+														<span class="sold-thumb"><i class="la la-arrow-down"></i></span>
+													</td>
+													<td>
+														<span class="badge badge-danger">Sold</span>
+													</td>
+													<td>
+														<i class="cc BTC"></i> BTC
+													</td>
+													<td>
+														Using - Card *******2321
+													</td>
+													<td class="text-danger">-0.000242 BTC</td>
+													<td>-0.125 USD</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="footer">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-xl-6 col-md-6">
+						<div class="copy_right">
+							Copyright ©
+							<script>
+								var CurrentYear = new Date().getFullYear()
+								document.write(CurrentYear)
+							</script> Kletka Bank. All Rights Reserved.
+						</div>
+					</div>
+					<div class="col-xl-6 col-md-6 text-lg-right text-center">
+						<div class="social">
+							<a href="#"><i class="fa fa-youtube-square"></i></a>
+							<a href="#"><i class="fa fa-instagram"></i></a>
+							<a href="#"><i class="fa fa-twitter-square"></i></a>
+							<a href="#"><i class="fa fa-facebook-f"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--removeIf(production)-->
+		<!--**********************************
+			Right sidebar start
+		***********************************-->
+		<div class="sidebar-right">
+			<div class="sidebar-right-inner">
+				<div class="admin-settings">
+					<div class="opt-background">
+						<p>Font Family</p>
+						<select class="form-control" name="theme_font" id="theme_font">
+							<option value="nunito">Nunito</option>
+							<option value="opensans">Open Sans</option>
+
+						</select>
+					</div>
+					<div>
+						<p>Primary Color</p>
+						<div class="opt-nav-header-color">
+							<span>
+								<input type="radio" name="navigation_header" value="color_1"
+									   class="filled-in chk-col-primary" id="nav_header_color_1" />
+								<label for="nav_header_color_1"></label>
+							</span>
+							<span>
+								<input type="radio" name="navigation_header" value="color_2"
+									   class="filled-in chk-col-primary" id="nav_header_color_2" />
+								<label for="nav_header_color_2"></label>
+							</span>
+							<span>
+								<input type="radio" name="navigation_header" value="color_3"
+									   class="filled-in chk-col-primary" id="nav_header_color_3" />
+								<label for="nav_header_color_3"></label>
+							</span>
+							<span>
+								<input type="radio" name="navigation_header" value="color_4"
+									   class="filled-in chk-col-primary" id="nav_header_color_4" />
+								<label for="nav_header_color_4"></label>
+							</span>
+							<span>
+								<input type="radio" name="navigation_header" value="color_5"
+									   class="filled-in chk-col-primary" id="nav_header_color_5" />
+								<label for="nav_header_color_5"></label>
+							</span>
+						</div>
+					</div>
+					<div class="opt-header-color">
+						<p>Background Color</p>
+						<div>
+							<span>
+								<input type="radio" name="header_bg" value="color_1" class="filled-in chk-col-primary"
+									   id="header_color_1">
+								<label for="header_color_1"></label>
+							</span>
+							<span>
+								<input type="radio" name="header_bg" value="color_2" class="filled-in chk-col-primary"
+									   id="header_color_2">
+								<label for="header_color_2"></label>
+							</span>
+							<span>
+								<input type="radio" name="header_bg" value="color_3" class="filled-in chk-col-primary"
+									   id="header_color_3">
+								<label for="header_color_3"></label>
+							</span>
+							<span>
+								<input type="radio" name="header_bg" value="color_4" class="filled-in chk-col-primary"
+									   id="header_color_4">
+								<label for="header_color_4"></label>
+							</span>
+							<span>
+								<input type="radio" name="header_bg" value="color_5" class="filled-in chk-col-primary"
+									   id="header_color_5">
+								<label for="header_color_5"></label>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-
-    <div class="limiter">
-        <div class="limiter-body">
-
-        <div class="header loading-imp">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <nav class="navbar navbar-expand-lg navbar-light px-0 justify-content-between">
-                            <a class="navbar-brand" href="index.html"><img src="~/img/w_logo.png" alt="">
-                                <span>Kletka Bank Student Test Project</span></a>
-
-
-                            <div class="dashboard_log my-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="account_money">
-                                        <ul>
-                                            <li class="crypto">
-                                                <span>0.0025</span>
-                                                <i class="cc BTC-alt"></i>
-                                            </li>
-                                            <li class="usd">
-                                                <span>19.93 USD</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="profile_log dropdown">
-                                        <div class="user" data-toggle="dropdown">
-                                            <span class="thumb"><i class="la la-user"></i></span>
-                                            <span class="name">@Html.Raw(@Model.Users.FullName)</span>
-                                            <span class="arrow"><i class="la la-angle-down"></i></span>
-                                        </div>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="accounts.html" class="dropdown-item">
-                                                <i class="fa fa-user"></i> Account
-                                            </a>
-                                            <a href="history.html" class="dropdown-item">
-                                                <i class="fa fa-book"></i> History
-                                            </a>
-                                            <a href="settings.html" class="dropdown-item">
-                                                <i class="fa fa-cog"></i> Setting
-                                            </a>
-                                            <a href="lock.html" class="dropdown-item">
-                                                <i class="fa fa-lock"></i> Lock
-                                            </a>
-                                            <a href="signin.html" class="dropdown-item logout">
-                                                <i class="fa fa-sign-out"></i> Logout
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="sidebar loading-imp">
-            <div class="menu">
-                <ul>
-                    <li>
-                        <a href="index.html" data-toggle="tooltip" data-placement="right" title="Home">
-                            <span><i class="fa fa-igloo"></i></span>
-                        </a>
-                    </li>
-                    <li><a href="buy-sell.html" data-toggle="tooltip" data-placement="right" title="Exchange">
-                            <span><i class="fa fa-exchange-alt"></i></span>
-                        </a>
-                    </li>
-                    <li><a href="accounts.html" data-toggle="tooltip" data-placement="right" title="Account">
-                            <span><i class="fa fa-user"></i></span>
-                        </a>
-                    </li>
-                    <li><a href="settings.html" data-toggle="tooltip" data-placement="right" title="Setting">
-                            <span><i class="fa fa-tools"></i></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="page_title">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="page_title-content">
-                            <p>Welcome Back,
-                                <span>   @Html.Raw(@Model.Users.FullName) </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="content-body">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="card profile_card" style='height: 389px;'>
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <img class="me-3 rounded-circle me-0 me-sm-3" src="~/img/profile/@Model.Logo" width="60" height="60" alt="">
-                                    <div class="flex-grow-1">
-                                        <span>Hello</span>
-                                        <h4 class="mb-2">@Html.Raw(@Model.Users.FullName)</h4>
-                                        <p class="mb-1"> <span><i class="fa fa-phone me-2 text-primary"></i></span> @Html.Raw(@Model.Users.Contacts)</p>
-                                        <p class="mb-1"> <span><i class="fa fa-envelope me-2 text-primary"></i></span>
-                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48c8188888ba4819c8589948881ca878b89">[email&#160;protected]</a>
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <ul class="card-profile__info">
-                                    <li>
-                                        <h5 class="me-4">Address</h5>
-                                        <span class="text-muted">@Html.Raw(@Model.Users.Id)</span>
-                                    </li>
-                                    <li class="mb-1">
-                                        <h5 class="me-4">Total Log</h5>
-                                        <span>103 Time (Today 5 Times)</span>
-                                    </li>
-                                    <li>
-                                        <h5 class="text-danger me-4">Last Log</h5>
-                                        <span class="text-danger">3 February,
-                                            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-                                                var CurrentYear = new Date().getFullYear()
-                                                document.write(CurrentYear)
-                                            </script>, 10:00 PM
-                                        </span>
-                                    </li>
-                                </ul>
-                                <div class="social-icons">
-                                    <a class="facebook text-center" href="javascript:void(0)"><span><i
-                                                class="fa fa-facebook"></i></span></a>
-                                    <a class="twitter text-center" href="javascript:void(0)"><span><i
-                                                class="fa fa-twitter"></i></span></a>
-                                    <a class="youtube text-center" href="javascript:void(0)"><span><i
-                                                class="fa fa-youtube"></i></span></a>
-                                    <a class="googlePlus text-center" href="javascript:void(0)"><span><i
-                                                class="fa fa-google"></i></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="card acc_balance">
-                            <div class="card-header">
-                                <h4 class="card-title">Wallet</h4>
-                            </div>
-                            <div class="card-body">
-                                <span>Available BTC</span>
-                                <h3>@Html.Raw(@Model.Accounts.AccountNumber)</h3>
-
-                                <div class="d-flex justify-content-between my-4">
-                                    <div>
-                                        <p class="mb-1">Buy this month</p>
-                                        <h4>3.0215485 BTC</h4>
-                                    </div>
-                                    <div>
-                                        <p class="mb-1">Sell this month</p>
-                                        <h4>3.0215485 BTC</h4>
-                                    </div>
-                                </div>
-
-                                <div class="btn-group mb-3">
-                                    <button class="btn btn-primary">Sell</button>
-                                    <button class="btn btn-success">Buy</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4">
-                        <div class="card" style='height: 389px;'>
-                            <div class="card-header">
-                                <h4 class="card-title">Withdraw</h4>
-                            </div>
-                            <div class="card-body">
-                                <form action="">
-                                    <div class="mb-3">
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text"><i class="fa fa-money-bill"></i></label>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="5000 USD">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text"><i class="fa fa-bank"></i></label>
-                                            </div>
-                                            <select class="form-control">
-                                                <option>7657</option>
-                                                <option>6104</option>
-                                                <option>3722</option>
-                                                <option>9559</option>
-                                                <option>8896</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-primary btn-block">Withdraw Now</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card">
-                            <div class="card-header border-0">
-                                <h4 class="card-title">All Activities</h4>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="transaction-table">
-                                    <div class="table-responsive">
-                                        <table class="table mb-0 table-responsive-sm">
-                                            <tbody>
-                                                <tr>
-                                                    <td><span class="sold-thumb"><i class="la la-arrow-down"></i></span>
-                                                    </td>
-
-                                                    <td>
-                                                        <span class="badge badge-danger">Sold</span>
-                                                    </td>
-                                                    <td>
-                                                        <i class="cc BTC"></i> BTC
-                                                    </td>
-                                                    <td>
-                                                        Using - Bank *******5264
-                                                    </td>
-                                                    <td class="text-danger">-0.000242 BTC</td>
-                                                    <td>-0.125 USD</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="buy-thumb"><i class="la la-arrow-up"></i></span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-success">Buy</span>
-                                                    </td>
-                                                    <td>
-                                                        <i class="cc LTC"></i> LTC
-                                                    </td>
-                                                    <td>
-                                                        Using - Card *******8475
-                                                    </td>
-                                                    <td class="text-success">-0.000242 BTC</td>
-                                                    <td>-0.125 USD</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="sold-thumb"><i class="la la-arrow-down"></i></span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-danger">Sold</span>
-                                                    </td>
-                                                    <td>
-                                                        <i class="cc XRP"></i> XRP
-                                                    </td>
-                                                    <td>
-                                                        Using - Card *******8475
-                                                    </td>
-                                                    <td class="text-danger">-0.000242 BTC</td>
-                                                    <td>-0.125 USD</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="buy-thumb"><i class="la la-arrow-up"></i></span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-success">Buy</span>
-                                                    </td>
-                                                    <td>
-                                                        <i class="cc DASH"></i> DASH
-                                                    </td>
-                                                    <td>
-                                                        Using - Card *******2321
-                                                    </td>
-                                                    <td class="text-success">-0.000242 BTC</td>
-                                                    <td>-0.125 USD</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><span class="sold-thumb"><i class="la la-arrow-down"></i></span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-danger">Sold</span>
-                                                    </td>
-                                                    <td>
-                                                        <i class="cc BTC"></i> BTC
-                                                    </td>
-                                                    <td>
-                                                        Using - Card *******2321
-                                                    </td>
-                                                    <td class="text-danger">-0.000242 BTC</td>
-                                                    <td>-0.125 USD</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="footer">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-6 col-md-6">
-                        <div class="copy_right">
-                            Copyright ©
-                            <script>
-                                var CurrentYear = new Date().getFullYear()
-                                document.write(CurrentYear)
-                            </script> Kletka Bank. All Rights Reserved.
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 text-lg-right text-center">
-                        <div class="social">
-                            <a href="#"><i class="fa fa-youtube-square"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter-square"></i></a>
-                            <a href="#"><i class="fa fa-facebook-f"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--removeIf(production)-->
-        <!--**********************************
-            Right sidebar start
-        ***********************************-->
-        <div class="sidebar-right">
-            <div class="sidebar-right-inner">
-                <div class="admin-settings">
-                    <div class="opt-background">
-                        <p>Font Family</p>
-                        <select class="form-control" name="theme_font" id="theme_font">
-                            <option value="nunito">Nunito</option>
-                            <option value="opensans">Open Sans</option>
-
-                        </select>
-                    </div>
-                    <div>
-                        <p>Primary Color</p>
-                        <div class="opt-nav-header-color">
-                            <span>
-                                <input type="radio" name="navigation_header" value="color_1"
-                                    class="filled-in chk-col-primary" id="nav_header_color_1" />
-                                <label for="nav_header_color_1"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="navigation_header" value="color_2"
-                                    class="filled-in chk-col-primary" id="nav_header_color_2" />
-                                <label for="nav_header_color_2"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="navigation_header" value="color_3"
-                                    class="filled-in chk-col-primary" id="nav_header_color_3" />
-                                <label for="nav_header_color_3"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="navigation_header" value="color_4"
-                                    class="filled-in chk-col-primary" id="nav_header_color_4" />
-                                <label for="nav_header_color_4"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="navigation_header" value="color_5"
-                                    class="filled-in chk-col-primary" id="nav_header_color_5" />
-                                <label for="nav_header_color_5"></label>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="opt-header-color">
-                        <p>Background Color</p>
-                        <div>
-                            <span>
-                                <input type="radio" name="header_bg" value="color_1" class="filled-in chk-col-primary"
-                                    id="header_color_1">
-                                <label for="header_color_1"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="header_bg" value="color_2" class="filled-in chk-col-primary"
-                                    id="header_color_2">
-                                <label for="header_color_2"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="header_bg" value="color_3" class="filled-in chk-col-primary"
-                                    id="header_color_3">
-                                <label for="header_color_3"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="header_bg" value="color_4" class="filled-in chk-col-primary"
-                                    id="header_color_4">
-                                <label for="header_color_4"></label>
-                            </span>
-                            <span>
-                                <input type="radio" name="header_bg" value="color_5" class="filled-in chk-col-primary"
-                                    id="header_color_5">
-                                <label for="header_color_5"></label>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>

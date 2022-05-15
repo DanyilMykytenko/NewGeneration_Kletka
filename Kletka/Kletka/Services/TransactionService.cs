@@ -14,9 +14,10 @@ namespace Kletka.Services
         {
             _repository = repository;
         }
-        public async Task<bool> checkingForTransaction(Accounts sendersAccount, Accounts receiversAccount, int money)
+        public async Task<bool> checkingForTransaction(Accounts sendersAccount, int NumberAccount, int money)
         {
-            bool isSuccessfull = await _repository.makeTransaction(sendersAccount, receiversAccount, money);
+            bool isSuccessfull = await _repository.makeTransaction(sendersAccount, NumberAccount, money);
+
             return isSuccessfull;
         }
     }

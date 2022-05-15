@@ -50,17 +50,29 @@ namespace Kletka.Controllers
             {
                 return NotFound();
             }
-            //var transaction = await _transactionService.checkingForTransaction(account, account, 0);
-            //var transaction = _transactionService;
+        
+            string value = Request.Form["card-number"];
+            string valueMoney = Request.Form["money-amount"];
             string UserLogo = await _cabinetService.checkLogoForUpload(user);
             dynamic mymodel = new ExpandoObject();
             mymodel.Users = user;
             mymodel.Accounts = account;
-            //mymodel.TransactionsService = transaction;
             mymodel.Logo = UserLogo;
+            if (value == null && valueMoney == null)
+            {
+                var transaction = await _transactionService.checkingForTransaction(account, -1, -1);
 
-            return View(mymodel);
+                return View(mymodel);
+            }
+            else
+            {
+                Console.WriteLine("KABANCHIK" + value.ToString());
+                Console.WriteLine(valueMoney.ToString());
+                //var transaction2 = await _transactionService.checkingForTransaction(account, pay.value, pay.valueMoney);
+                return View(mymodel);
+            }
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

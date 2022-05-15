@@ -8,6 +8,6 @@ namespace Kletka.Services
 {
     public interface ITransactionsService
     {
-        public Task<bool> checkingForTransaction(Accounts sendersAccount, Accounts receiversAccount, int money);
+        public Task<bool> checkingForTransaction(Accounts sendersAccount, int AccountNumber, int money);
     }
 }

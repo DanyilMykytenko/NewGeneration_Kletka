@@ -73,3 +73,37 @@ window.addEventListener('load', function () {
     }, 3500)
     
 });
+function sendMoneyRequest() {
+    let input = document.querySelector('.input-card-number');
+    let moneyAmountInput = document.querySelector('.money-amount');
+    let e = document.querySelector(".parent-control")
+    var value = e.options[e.selectedIndex].value;
+    input.value = parseInt(value);
+    console.log(value);
+    moneyAmountInput.addEventListener('input', (e) => {
+        console.log(moneyAmountInput, e)
+    });
+    //form.addEventListener("click", function () {
+    //    form.submit();
+    //});
+   
+}
+
+sendMoneyRequest()
+async function moneyPostRequest() {
+    let input = document.querySelector('.input-card-number');
+    let moneyAmountInput = document.querySelector('.money-amount');
+    let objToSend = {
+        accNumber: parseInt(input.value),
+        moneyAmount: parseInt(moneyAmountInput.value)
+    }
+    console.warn(moneyAmountInput)
+    console.log('obj to send', objToSend)
+    let response = await fetch('/Home/LoginForm', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(objToSend)
+    });
+}
