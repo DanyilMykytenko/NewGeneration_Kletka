@@ -94,16 +94,23 @@ async function moneyPostRequest() {
     let input = document.querySelector('.input-card-number');
     let moneyAmountInput = document.querySelector('.money-amount');
     let objToSend = {
-        accNumber: parseInt(input.value),
+        receiverAccountNumber: parseInt(input.value),
         moneyAmount: parseInt(moneyAmountInput.value)
     }
     console.warn(moneyAmountInput)
     console.log('obj to send', objToSend)
-    let response = await fetch('/Home/LoginForm', {
+
+    fetch('/Home/Money', {
         method: 'POST',
         headers: {
+            'Accept': 'application/json;charset=utf-8',
             'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(objToSend)
+    })
+    .then(async(response) =>
+    {
+        var json = await response.json();
+        document.querySelector('.money-amount').value = json.money;
     });
 }

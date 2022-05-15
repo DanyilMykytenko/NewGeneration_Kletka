@@ -9,6 +9,9 @@ using Kletka.Infrastructure.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Dynamic;
+using Kletka.Extensions;
+using Newtonsoft.Json;
+using Kletka.Exceptions;
 
 namespace Kletka.Controllers
 {
@@ -23,7 +26,14 @@ namespace Kletka.Controllers
         private readonly IAccountService _accountService;
         private readonly ITransactionsService _transactionService;
 
-        public HomeController(ILogger<HomeController> logger, IUserService userService, IStatusesService statusService, ILoginService loginService, ICabinetService cabinetService, IAccountService accountService, ITransactionsService transactionsService)
+        public HomeController(
+            ILogger<HomeController> logger, 
+            IUserService userService, 
+            IStatusesService statusService, 
+            ILoginService loginService, 
+            ICabinetService cabinetService, 
+            IAccountService accountService, 
+            ITransactionsService transactionsService)
         {
             _logger = logger;
             _userService = userService;
@@ -34,43 +44,63 @@ namespace Kletka.Controllers
             _transactionService = transactionsService;
         }
 
-        public IActionResult Index()
+        #region Views
+
+        public async Task<IActionResult> Index()
         {
-            return View("Login");
+            string token = null;
+            if (!Request.Cookies.TryGetValue("token", out token))
+                return View("Login");
+
+            var user = await _loginService.CheckToken(token);
+            if (user == null)
+                return View("Login");
+
+            return RedirectToAction("Cabinet");
         }
-        public async Task<IActionResult> LoginForm(Users users)
+
+        public async Task<IActionResult> LoginForm(LoginFormModel model)
         {
-            var user = await _loginService.CheckLogin(users.Login, users.Password);
+            var user = await _loginService.CheckLogin(model.Login, model.Password);
             if (user == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
-            var account = await _cabinetService.uploadAccountInformation(user.Id);
+
+            Response.Cookies.Append("token", _loginService.CreateToken(user.Id, user.Password));
+
+            return RedirectToAction("Cabinet");
+        }
+
+        public async Task<IActionResult> Cabinet()
+        {
+            string token = null;
+            if (!Request.Cookies.TryGetValue("token", out token))
+                return RedirectToAction("Index");
+
+            var user = await _loginService.CheckToken(token);
+            if (user == null)
+                return RedirectToAction("Index");
+            var account = await _cabinetService.GetAccountInformation(user.Id);
             if (account == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
-        
-            string value = Request.Form["card-number"];
-            string valueMoney = Request.Form["money-amount"];
-            string UserLogo = await _cabinetService.checkLogoForUpload(user);
+
+            string userLogo = await _cabinetService.CheckLogoForUpload(user);
             dynamic mymodel = new ExpandoObject();
             mymodel.Users = user;
             mymodel.Accounts = account;
-            mymodel.Logo = UserLogo;
-            if (value == null && valueMoney == null)
-            {
-                var transaction = await _transactionService.checkingForTransaction(account, -1, -1);
+            mymodel.Logo = userLogo;
 
-                return View(mymodel);
-            }
-            else
-            {
-                Console.WriteLine("KABANCHIK" + value.ToString());
-                Console.WriteLine(valueMoney.ToString());
-                //var transaction2 = await _transactionService.checkingForTransaction(account, pay.value, pay.valueMoney);
-                return View(mymodel);
-            }
+            return View(mymodel);
+        }
+
+        public async Task<IActionResult> LogoutForm()
+        {
+            Response.Cookies.Delete("token");
+
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -78,5 +108,39 @@ namespace Kletka.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        #endregion
+
+        #region Json
+
+        [HttpPost]
+        public async Task<IActionResult> Money([FromBody] MoneyModel model)
+        {
+            try
+            {
+                string token = null;
+                if (!Request.Cookies.TryGetValue("token", out token))
+                    return Unauthorized();
+
+                var user = await _loginService.CheckToken(token);
+                if (user == null)
+                    return Unauthorized();
+
+                var account = await _cabinetService.GetAccountInformation(user.Id);
+                var affectedAccounts = await _transactionService.MakeTransaction(account.AccountNumber, model.ReceiverAccountNumber, model.MoneyAmount);
+                if (!affectedAccounts.Any())
+                {
+                    return NotFound();
+                }
+
+                return Content(JsonConvert.SerializeObject(new { Money = affectedAccounts.First(a => a.AccountNumber == account.AccountNumber).Balance, Success = true }), "application/json");
+            }
+            catch(NoMoneyException)
+            {
+                return Content(JsonConvert.SerializeObject(new { Money = 0.0, Success = false, Reason = "Not enough money on your balance" }), "application/json");
+            }
+        }
+
+        #endregion        
     }
 }

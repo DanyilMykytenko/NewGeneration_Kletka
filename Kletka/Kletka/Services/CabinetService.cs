@@ -15,7 +15,9 @@ namespace Kletka.Services
             _repository = repository;
         }
 
-        public async Task<string> checkLogoForUpload(Users user)
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+        public async Task<string> CheckLogoForUpload(Users user)
+
         {
             if(user == null)
             {
@@ -30,8 +32,9 @@ namespace Kletka.Services
                 return "chmonya.jpg";
             }
         }
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
 
-        public async Task<Accounts> uploadAccountInformation(int id)
+        public async Task<Accounts> GetAccountInformation(int id)
         {
             var Account = await _repository.GetAccountsByUserAsync(id);
             return Account;

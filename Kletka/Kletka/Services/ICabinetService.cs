@@ -8,7 +8,7 @@ namespace Kletka.Services
 {
     public interface ICabinetService
     {
-        public Task<Accounts> uploadAccountInformation(int id);
-        public Task<string> checkLogoForUpload(Users user);
+        public Task<Accounts> GetAccountInformation(int id);
+        public Task<string> CheckLogoForUpload(Users user);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Kletka.Infrastructure.Data;
+﻿using Kletka.Exceptions;
+using Kletka.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -43,17 +44,25 @@ namespace Kletka.Infrastructure.Repository
         }
         public async Task<Users> GetUsersAsync(string username, string password)
         {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Login == username);
-            var pass = await _dbContext.Users.FirstOrDefaultAsync(x => x.Password == password);
+            var user = await _dbContext.Users
+                .FirstOrDefaultAsync(x => x.Login == username && x.Password == password);
 
             if (user == null)
                 return null;
 
-            if (pass == null)
+            return user;
+        }
+
+        public async Task<Users> GetUsersAsync(int id)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (user == null)
                 return null;
 
             return user;
         }
+
         public async Task<Accounts> GetAccountsByUserAsync(int id)
         {
             var account = await _dbContext.Accounts.FirstOrDefaultAsync(x => x.OwnerId == id);
@@ -69,23 +78,38 @@ namespace Kletka.Infrastructure.Repository
             return account;
         }
 
-        public async Task<bool> makeTransaction(Accounts sendersAccount, int accountNumber, int money)
+        public async Task<List<Accounts>> GetAccountsByAccountNumbersAsync(List<int> accountNumbers)
         {
-            if (accountNumber == -1) return false;
-            if(sendersAccount == null || accountNumber == 0)
+            var accounts = await _dbContext.Accounts.Where(x => accountNumbers.Contains(x.AccountNumber)).ToListAsync();
+            
+            return accounts;
+        }
+
+        public async Task<List<Accounts>> MakeTransaction(int sendersAccountNumber, int receiversAccountNumber, int money)
+        {
+            if (sendersAccountNumber == -1 || receiversAccountNumber == -1) return new List<Accounts>();
+
+            var accounts = await GetAccountsByAccountNumbersAsync(new List<int> { sendersAccountNumber, receiversAccountNumber });
+
+            var sendersAccount = accounts.FirstOrDefault(a => a.AccountNumber == sendersAccountNumber);
+            var receiversAccount = accounts.FirstOrDefault(a => a.AccountNumber == receiversAccountNumber);
+
+            if(sendersAccount == null || receiversAccount == null)
             {
-                throw new ArgumentNullException();
+                return new List<Accounts>();
             }
-            var receiversAccount = await GetAccountByAccountNumberAsync(accountNumber);
+
             if (sendersAccount.Balance > money)
             {
                 sendersAccount.Balance -= money;
                 receiversAccount.Balance += money;
-                return true;
+
+                await _dbContext.SaveChangesAsync();
+                return accounts;
             }
             else
             {
-                return false;
+                throw new NoMoneyException();
             }
         }
 
