@@ -186,26 +186,23 @@
 							<div class="card-header">
 								<h4 class="card-title">Wallet</h4>
 							</div>
-							<div class="card-body">
-								<span>Available BTC</span>
-								<h3>@Html.Raw(@Model.Accounts.AccountNumber)</h3>
+                            <div class="card-body">
+                                <span>Account Number</span>
+                                <h3>@Html.Raw(@Model.Accounts.AccountNumber)</h3>
 
-								<div class="d-flex justify-content-between my-4">
-									<div>
-										<p class="mb-1">Buy this month</p>
-										<h4>3.0215485 BTC</h4>
-									</div>
-									<div>
-										<p class="mb-1">Sell this month</p>
-										<h4>3.0215485 BTC</h4>
-									</div>
-								</div>
+                                <div class="d-flex justify-content-between my-4">
+                                    <div>
+                                        <p class="mb-1">Your Balance:</p>
+                                        <h4 class="acc-balance">@Html.Raw(Model.Accounts.Balance)</h4>
+                                    </div>
+                                </div>
 
-								<div class="btn-group mb-3">
+                                <!--<div class="btn-group mb-3">
 									<button class="btn btn-primary">Sell</button>
 									<button class="btn btn-success">Buy</button>
-								</div>
-							</div>
+									</div>
+								-->
+                            </div>
 						</div>
 					</div>
 					<div class="col-xl-4 col-lg-4">
@@ -221,7 +218,7 @@
 												<div class="input-group-prepend">
 													<label class="input-group-text"><i class="fa fa-money-bill"></i></label>
 												</div>
-												<input class='form-control money-amount' placeholder="5000 USD" name="money-amount" value="1" type="text" />
+												<input class='form-control money-amount' placeholder="5000 USD" name="money-amount" value="0" type="text" />
 												
 
 											</div>
@@ -243,7 +240,7 @@
 										</div>
 
 
-										<div  class="btn btn-primary btn-block"  onclick='moneyPostRequest()'>Withdraw Now</div>
+										<div  class="btn btn-primary btn-block"  onclick='moneyPostRequest()'>Withdraw</div>
 										
 									</form>
 							</div>

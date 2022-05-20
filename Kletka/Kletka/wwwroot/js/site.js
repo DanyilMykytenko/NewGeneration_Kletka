@@ -93,9 +93,10 @@ sendMoneyRequest()
 async function moneyPostRequest() {
     let input = document.querySelector('.input-card-number');
     let moneyAmountInput = document.querySelector('.money-amount');
+    let accbalance = document.querySelector('.acc-balance');
     let objToSend = {
         receiverAccountNumber: parseInt(input.value),
-        moneyAmount: parseInt(moneyAmountInput.value)
+        moneyAmount: parseInt(moneyAmountInput.value),
     }
     console.warn(moneyAmountInput)
     console.log('obj to send', objToSend)
@@ -111,6 +112,13 @@ async function moneyPostRequest() {
     .then(async(response) =>
     {
         var json = await response.json();
-        document.querySelector('.money-amount').value = json.money;
+        if (json.success == true) {
+            accbalance.textContent = json.money
+        }
+        else {
+            accbalance.textContent = accbalance.textContent
+        }
+        document.querySelector('.money-amount').value = 0;
+        console.log(json)
     });
 }

@@ -99,7 +99,7 @@ namespace Kletka.Infrastructure.Repository
                 return new List<Accounts>();
             }
 
-            if (sendersAccount.Balance > money)
+            if (sendersAccount.Balance >= money)
             {
                 sendersAccount.Balance -= money;
                 receiversAccount.Balance += money;
