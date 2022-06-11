@@ -1,4 +1,5 @@
 ﻿using Castle.Core.Internal;
+using Kletka.Extensions;
 using Kletka.Infrastructure.Data;
 using Kletka.Infrastructure.Repository;
 using System;
@@ -14,14 +15,35 @@ namespace Kletka.Services
         {
             _repository = repository;
         }
-        public async Task<int> CheckLogin(string login,string password)
+        public async Task<Users> CheckLogin(string login,string password)
         {
-            var tasks = await _repository.Login(login,password);
-            if (tasks == null)
+            var user = await _repository.GetUsersAsync(login,password);
+            if (user == null)
             {
-                return 0;
+                return null;
             }
-            return tasks.Id;
+            return user;
+        }
+        public async Task<Users> CheckToken(string token)
+        {
+            var userId = int.Parse(token.Split(":")[0]);
+            var user = await _repository.GetUsersAsync(userId);
+            if (user == null)
+            {
+                return null;
+            }
+
+            if(CreateToken(userId, user.Password) != token)
+            {
+                return null;
+            }
+
+            return user;
+        }
+
+        public string CreateToken(int userId, string password)
+        {
+            return $"{userId}:{password.GenerateSHA256Hash()}";
         }
     }
 }

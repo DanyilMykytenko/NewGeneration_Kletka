@@ -73,3 +73,52 @@ window.addEventListener('load', function () {
     }, 3500)
     
 });
+function sendMoneyRequest() {
+    let input = document.querySelector('.input-card-number');
+    let moneyAmountInput = document.querySelector('.money-amount');
+    let e = document.querySelector(".parent-control")
+    var value = e.options[e.selectedIndex].value;
+    input.value = parseInt(value);
+    console.log(value);
+    moneyAmountInput.addEventListener('input', (e) => {
+        console.log(moneyAmountInput, e)
+    });
+    //form.addEventListener("click", function () {
+    //    form.submit();
+    //});
+   
+}
+
+sendMoneyRequest()
+async function moneyPostRequest() {
+    let input = document.querySelector('.input-card-number');
+    let moneyAmountInput = document.querySelector('.money-amount');
+    let accbalance = document.querySelector('.acc-balance');
+    let objToSend = {
+        receiverAccountNumber: parseInt(input.value),
+        moneyAmount: parseInt(moneyAmountInput.value),
+    }
+    console.warn(moneyAmountInput)
+    console.log('obj to send', objToSend)
+
+    fetch('/Home/Money', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json;charset=utf-8',
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(objToSend)
+    })
+    .then(async(response) =>
+    {
+        var json = await response.json();
+        if (json.success == true) {
+            accbalance.textContent = json.money
+        }
+        else {
+            accbalance.textContent = accbalance.textContent
+        }
+        document.querySelector('.money-amount').value = 0;
+        console.log(json)
+    });
+}

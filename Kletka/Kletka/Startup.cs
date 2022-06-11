@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,9 @@ namespace Kletka
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ILoginService, LoginServicecs>();
             services.AddScoped<IStatusesService, StatusesService>();
+            services.AddScoped<ICabinetService, CabinetService>(); 
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITransactionsService, TransactionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +66,12 @@ namespace Kletka
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
 
             //Ensures that the database for the context exists. If it exists, no action is taken.
             //If it does not exist then the database and all its schema are created.

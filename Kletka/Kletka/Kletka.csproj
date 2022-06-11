@@ -7,10 +7,13 @@
   <ItemGroup>
     <Content Remove="Views\Login.cshtml" />
     <Content Remove="Views\LoginForm.cshtml" />
+    <Content Remove="wwwroot\img\chmonya.jpg" />
+    <Content Remove="wwwroot\img\voenkom.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="bootstrap.sass" Version="5.1.3" />
+    <PackageReference Include="jQuery" Version="3.6.0" />
     <PackageReference Include="LineAwesomeIconPack" Version="1.2.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.15">
@@ -21,6 +24,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.15" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
   </ItemGroup>
 
