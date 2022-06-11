@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "line-awesome@1.3.0",
+      "destination": "wwwroot/lib/line-awesome/"
+    }
+  ]
+}
