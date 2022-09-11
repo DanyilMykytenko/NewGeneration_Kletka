@@ -70,7 +70,7 @@ window.addEventListener('load', function () {
         setTimeout(() => {
             changeBackground();
         }, 700)
-    }, 3500)
+    }, 500)
     
 });
 function sendMoneyRequest() {
